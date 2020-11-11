@@ -10,15 +10,13 @@ public class MoreConditionals {
             return true;
         } else if (divByHundred){
             return false;
-        } else if (divBy4){
-            return true;
         } else {
-            return false;
+            return divBy4;
         }
 
     }
 
-    public boolean isLater(int month1, int day1, int year1, int month2, int day2, int year2){
+    public static boolean isLater(int month1, int day1, int year1, int month2, int day2, int year2){
         if (year1 > year2){
             return true;
         } else if (year2 > year1) {
@@ -29,37 +27,58 @@ public class MoreConditionals {
             } else if (month2 > month1){
                 return false;
             } else {
-                if (day1 > day2){
-                    return true;
-                } else {
-                    return false;
-                }
+                return day1 > day2;
             }
         }
     }
 
-    public String bestMatch(int r, int g, int b){
-        if (r == g && g == b && r == b){
+    public static String bestMatch(int r, int g, int b){
+        if (r == g && g == b){
             return "GRAY";
-        } else if (r != b && b != g && r != g){
-            if (r > b && r > g && b != g){
-
-            } else if (b > r && b > g){
-
-            } else {
-
-            }
-        } else {
-
+        } else if (r > g && r > b){
+            return "RED";
+        } else if (g > b && g > r){
+            return "GREEN";
+        } else if (b > g && b > r){
+            return "BLUE";
+        } else if (r < g && r < b){
+            return "CYAN";
+        } else if (g < b && g < r){
+            return "MAGENTA";
+        } else if (b < g && b < r){
+            return "YELLOW";
         }
+        return "hi";
+    }
+
+    public static int findBestFit(int size1, int size2, int space){
+        if (size1 > space && size2 > space){
+            return 0;
+        } else if (size1 < space && size2 > space){
+            return 1;
+        } else if (size1 > space && size2 < space){
+            return 2;
+        } else {
+            if (size1 + size2 < space){
+                return 3;
+            } else if (size1 > size2){
+                return 1;
+            } else {
+                return 2;
+            }
+        }
+    }
+
+    public static boolean makeBench(int small, int big, int goal){
+        return small >= goal % 5 && small + 5 * big >= goal;
     }
 
     public static void main(String[] args){
         // leap year
-        System.out.println("2000 " + isLeapYear(2000));
-        System.out.println("2004 " + isLeapYear(2004));
-        System.out.println("2003 " + isLeapYear(2003));
-        System.out.println("2100 " + isLeapYear(2100));
+        System.out.println("2000 " + isLeapYear(2000)); //true
+        System.out.println("2004 " + isLeapYear(2004)); //true
+        System.out.println("2003 " + isLeapYear(2003)); //false
+        System.out.println("2100 " + isLeapYear(2100)); //false
         System.out.println(" ");
         // is later
         System.out.println("1/2/2010 is later than 1/2/2011 " + isLater(1,2,2010, 1,2,2011));
